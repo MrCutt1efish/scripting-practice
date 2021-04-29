@@ -1,0 +1,68 @@
+#! /bin/bash
+
+clear
+echo "Pick your Math Practice: "
+echo "(a) Addition"
+echo "(s) Subtraction"
+echo "(m) Modulus"
+read option
+
+echo "Enter Max range for practice: "
+read range
+
+echo "Enter number of problems in practice set: "
+read pro
+
+clear
+if [ "$option" = "a" ]; then	
+	while [ "$pro" -gt "0" ]; do
+		u=$(rand_integer $range)
+		v=$(rand_integer $range)
+		echo "$u + $v = "
+		read uans
+		ans=$(( $u + $v ))
+		while [ $uans -ne $ans ]; do
+			echo "Incorrect! Try Again!"
+			echo "$u + $v = "
+			read uans
+		done
+		echo "Correct!"
+		pro=$(( $pro - 1 ))
+	done
+elif [ "$option" = "s" ]; then
+	while [ "$pro" -gt "0" ]; do
+		u=$(rand_integer $range)
+		v=$(rand_integer $range)
+		while [ $v -gt $u ]; do
+			u=$(rand_integer $range)
+			v=$(rand_integer $range)
+		done	
+		echo "$u - $v = "
+		read uans
+		ans=$(( $u - $v ))
+		while [ $uans -ne $ans ]; do
+			echo "Incorrect! Try Again!"
+			echo "$u - $v = "
+			read uans
+		done
+		echo "Correct!"
+		pro=$(( $pro - 1 ))
+	done
+elif [ "$option" = "m" ]; then
+	while [ "$pro" -gt "0" ]; do
+		u=$(rand_integer $range)
+		v=$(rand_integer $range)
+		echo "$u mod $v = "
+		read uans
+		ans=$(( $u % $v ))
+		while [ $uans -ne $ans ]; do
+			echo "Incorrect! Try Again!"
+			echo "$u mod $v = "
+			read uans
+		done
+		echo "Correct!"
+		pro=$(( $pro - 1 ))	
+	done
+else
+	echo "Please pick an option nezt time."
+fi 

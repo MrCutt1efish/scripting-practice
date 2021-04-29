@@ -1,0 +1,12 @@
+echo "Enter album name: "
+read album
+mkdir /Users/cyrussecrest/Music/$album
+while [ "1" = "1" ]
+do
+echo "Enter song name: "
+read song
+echo "Enter song URL: "
+read url
+youtube-dl --extract-audio --audio-format mp3 -o "/Users/cyrussecrest/Music/$album/$song.%(ext)s" "$url" > output.txt
+echo "Song Downloaded"
+done 
